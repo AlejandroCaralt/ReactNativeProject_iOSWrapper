@@ -12,7 +12,7 @@ internal import React
 public class RNSDKManager: NSObject {
 
     public static let shared = RNSDKManager()
-    private var bridge: RCTBridge?
+    private var bridge: Any?
     
     private override init() {
         super.init()
@@ -30,7 +30,7 @@ public class RNSDKManager: NSObject {
     }
 
     public func createBlueButtonView(title: String? = nil) -> UIView {
-        guard let bridge = bridge else {
+        guard let bridge = bridge as? RCTBridge else {
             fatalError("Engine not started")
         }
         
